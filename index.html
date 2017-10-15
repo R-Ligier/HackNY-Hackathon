@@ -7,10 +7,27 @@
     <link rel="stylesheet" href="design.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<<<<<<< HEAD
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en"></script>
 
     
 
+=======
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en&callback
+    =initialize">async defer</script>
+    <!-- Nav Bar -->
+<div class="topnav" id="myTopNav">
+    <a href="#home">Home</a>
+    <a href="#map">Map</a>
+    <div id='content'></div>
+</div>
+<style>
+       #map {
+        height: 800px;
+        width: 200%;
+       }
+</style>
+>>>>>>> 8cd3220af5ea1c525256281e747b848d087fc390
 </head>
 
 <body>
@@ -32,7 +49,7 @@
 
         <div class = "searchBox">
             <input type="text" placeholder="Enter a location ..." id="autocomplete">
-            <button id='submit' onclick="locate()">Search</button>
+            <button id='submit' onclick="locate()">Submit</button>
         </div>
     </div>
 
@@ -49,6 +66,7 @@
     </div>
   
 
+<<<<<<< HEAD
     <div id = "tips">
       <p> bskiwdn </p>
     </div>
@@ -65,9 +83,15 @@
               }
         }); 
         // --------------MAP--------------------------------
+=======
+    <script>
+
+>>>>>>> 8cd3220af5ea1c525256281e747b848d087fc390
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input);
         var markers = [];
+        var places = [];
+        var infowindow;
 
         var map = new google.maps.Map(document.getElementById('map'), {
              zoom: 15,
@@ -81,18 +105,23 @@
           var geocoder = new google.maps.Geocoder();
 
            var address = document.getElementById('autocomplete').value;
-           alert(address);
+           var tempLocation = 0;
            geocoder.geocode({'address': address}, function(results, status) {
              if (status === 'OK') {
+
               map.setCenter(results[0].geometry.location);
+              tempLocation = results[0].geometry.location;
               var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
               });
               
-              marker.addListener('click', function() {
-                
-              });
+              var service = new google.maps.places.PlacesService(map);
+                service.nearbySearch({
+                    location : tempLocation,
+                    radius : 5500,
+                    type : [ 'doctor' ]
+                }, callback);
             } else {
               alert('Geocode was not successful for the following reason: ' + status);
             }
@@ -103,7 +132,36 @@
             alert('navigator.geolocation failed, may not be supported');
         }
 
-</script>
+        infowindow = new google.maps.InfoWindow();
+        function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+
+        function createMarker(place) {
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+            places.push(place.name);
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
+
+        for(var i = 0; i < places.length; ++i){
+            var div = document.createElement('div');
+            div.innerHTML = places[i];
+            document.getElementById('content').appendChild(div);
+        }
+      }
+
+
+    </script>
 
 </body>
 
