@@ -5,20 +5,23 @@
 <head>
 
     <link rel="stylesheet" href="design.css">
-    <link rel="script" href="javascript.js">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dosis|Hind|Open+Sans|Quicksand" rel="stylesheet">
 
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en"></script>
     <!-- Nav Bar -->
 <div class="topnav" id="myTopNav">
     <a href="#home">Home</a>
     <a href="#map">Map</a>
 </div>
-
+<style>
+       #map {
+        height: 800px;
+        width: 200%;
+       }
+</style>
 </head>
 
-<body>
+<body >
 
 
     <!-- Home tab - search bar -->
@@ -31,17 +34,51 @@
         </div>
         <div class = "searchBox">
             <input type="text" placeholder="Enter a location ..." id="autocomplete">
+            <button id='submit' onclick="locate()">Submit</button>
         </div>
     </div>
 
-    <div id = "Map">
+  <div id="map"></div>
 
-        <div id="map">My map will go here</div>
 
-    </div>
+
+
     <script>
+
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input);
+        var markers = [];
+        function locate(){
+            navigator.geolocation.getCurrentPosition(initialize,fail);
+        }
+
+        function initialize(position) {
+          var geocoder = new google.maps.Geocoder();
+          var map = new google.maps.Map(document.getElementById('map'), {
+             zoom: 15,
+             center: {lat: -34.397, lng: 150.644}
+           });
+
+
+           var address = document.getElementById('autocomplete').value;
+           alert(address);
+           geocoder.geocode({'address': address}, function(results, status) {
+             if (status === 'OK') {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+          });
+        }
+        function fail(){
+            alert('navigator.geolocation failed, may not be supported');
+        }
+
+
     </script>
 
 </body>
