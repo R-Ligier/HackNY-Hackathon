@@ -4,12 +4,11 @@
 
 <head>
 
-    <link rel="stylesheet" href="design.css">
+  <link rel="stylesheet" href="design.css">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en"></script>
-
-    
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en"></script>
+  
 
 </head>
 
@@ -25,60 +24,62 @@
 
         <div class = "HeaderTitle">
               Find a Mental Health Clinic
-            <p> Providing users with easy access to mental health
-                    clinics around around them </p> 
-            
+            <p> Providing users with easy access to mental health clinics around around them </p>  
         </div>
 
         <div class = "searchBox">
             <input type="text" placeholder="Enter a location ..." id="autocomplete">
             <button id='submit' onclick="locate()">Search</button>
         </div>
-    </div>
 
-    <div id="mapContent">
+    </div>
+  
+  <!--Google Map Content -->
+
+
+    <div id="content">
+       
        <div class="column">
-          <p>Some Content</p>
-          <p>Some Content</p>
-          <p>Some Content</p>
+          <div id="map"></div>
        </div>
+       
        <div class="column two">
         <p>Some Content</p>
 
        </div>
+
     </div>
   
 
     <div id = "tips">
-      <p> bskiwdn </p>
+      <section>
+        <h1> Top 25 Mental Health Doctors in NYC </h1>
+      </section>
     </div>
-
-  <div id="map"></div>
+    
 
 
 
     <script>
-        /* affix the navbar after scroll below header */
-        $('#nav').affix({
-              offset: {
-                top: $('#services').offset().top
-              }
-        }); 
         // --------------MAP--------------------------------
+
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input);
         var markers = [];
 
+
         var map = new google.maps.Map(document.getElementById('map'), {
-             zoom: 15,
-             center: {lat: -34.397, lng: 150.644}
+             zoom: 17,
+             center: {lat: 40.7127, lng: -74.0059}
         });
+
         function locate(){
             navigator.geolocation.getCurrentPosition(initialize,fail);
         }
-
+       
         function initialize(position) {
           var geocoder = new google.maps.Geocoder();
+          
 
            var address = document.getElementById('autocomplete').value;
            alert(address);
@@ -89,22 +90,21 @@
                 map: map,
                 position: results[0].geometry.location
               });
-              
-              marker.addListener('click', function() {
-                
-              });
-            } else {
+            }else {
               alert('Geocode was not successful for the following reason: ' + status);
             }
+          
           });
 
         }
         function fail(){
             alert('navigator.geolocation failed, may not be supported');
         }
-
-</script>
+    </script>
 
 </body>
 
+
+
 </html>
+ 

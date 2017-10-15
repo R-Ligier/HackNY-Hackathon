@@ -96,23 +96,22 @@ input[type=text] {
 }
 
 /*--------MAP Content------------*/
- #mapContent{
-display:table; 
-width:100%;
-padding-top: 30px;
+#content{
+    display:table; 
+    width:100%;
+    padding-top: 40px;
 }
 .column {
-
-display:table-cell;
-width:80%;
-background:#ccc;
-padding:0 20px;
+    display:table-cell;
+    width:80%;
+    padding:0 20px;
 }
 .two {
-background:yellow;
+    background:yellow;
 }
 /*Map*/
- #map {
-        height: 100%;
-        width: 100%;
-       }
+#map {
+    height: 800px;
+    width: 800px;
+    
+    }
