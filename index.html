@@ -5,7 +5,7 @@
 <head>
 
   <link rel="stylesheet" href="design.css">
-
+  <link href="https://fonts.googleapis.com/css?family=Dosis:300|Hind|Open+Sans|Quicksand" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en"></script>
   
@@ -16,14 +16,15 @@
 
 <div class="topnav">
   <a class="active" href="#home">Home</a>
-  <a href="#tips">Tips</a>
+  <a href="#mapTab">Map</a>
+  <a href="#Hotlines">Suicide Prevention Hotline</a>
 </div>
 
     <!-- Home tab - search bar -->
     <div id = "home" class="active">
 
         <div class = "HeaderTitle">
-              Find a Mental Health Clinic
+                Find a Mental Health Clinic
             <p> Providing users with easy access to mental health clinics around around them </p>  
         </div>
 
@@ -31,35 +32,32 @@
             <input type="text" placeholder="Enter a location ..." id="autocomplete">
             <button id='submit' onclick="locate()">Search</button>
         </div>
-
     </div>
   
   <!--Google Map Content -->
 
 
-    <div id="content">
-       
-       <div class="column">
-          <div id="map"></div>
-       </div>
-       
-       <div class="column two">
-        <p>Some Content</p>
+   <div id = "mapTab">
+        <p class = "title"> Mental health clinics near you ... </p>
 
-       </div>
-
-    </div>
-  
-
-    <div id = "tips">
-      <section>
-        <h1> Top 25 Mental Health Doctors in NYC </h1>
-      </section>
-    </div>
+       <div id="map"></div>
     
+      <p>Doctors in your area:</p>
+      <div id ="content1"></div>
 
+  </div>
 
+  <div id = "Hotlines">
+    <p class = "title"> Need someone to speak to? </p>
+    <p class = "descrip"> "We can all help prevent suicide. The Lifeline provides 24/7, free and 
+      confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals." </p>
+      <p>- National Suicide Prevention Lifeline </p>
+ 
+    <div class = "num"> Call: 1800.273.8255 </div>
 
+  </div>
+  
+    
     <script>
         // --------------MAP--------------------------------
 
@@ -70,8 +68,8 @@
         var infowindow;
 
         var map = new google.maps.Map(document.getElementById('map'), {
-             zoom: 15,
-             center: {lat: -34.397, lng: 150.644}
+             zoom: 12,
+             center: {lat: 40.785, lng: -73.968}
         });
         function locate(){
             navigator.geolocation.getCurrentPosition(initialize,fail);
@@ -110,11 +108,19 @@
 
         infowindow = new google.maps.InfoWindow();
         function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
+            for(var i = 0; i < places.length; ++i){
+              var div = document.createElement('div');
+              div.innerHTML = "<ul class = 'Names'>" + places[i] + "</ul>";
+              document.getElementById('content1').appendChild(div);
+            }
+
+            }
         }
+
 
         function createMarker(place) {
             var placeLoc = place.geometry.location;
@@ -125,17 +131,13 @@
             places.push(place.name);
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent(place.name);
-                infowindow.open(map, this);
+                // infowindow.open(map, this);
+
             });
         }
 
-        for(var i = 0; i < places.length; ++i){
-            var div = document.createElement('div');
-            div.innerHTML = places[i];
-            document.getElementById('content').appendChild(div);
-        }
-      }
-
+        
+      
 
     </script>
 
