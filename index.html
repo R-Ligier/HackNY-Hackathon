@@ -13,6 +13,7 @@
 <div class="topnav" id="myTopNav">
     <a href="#home">Home</a>
     <a href="#map">Map</a>
+    <div id='content'></div>
 </div>
 
 </head>
@@ -37,23 +38,27 @@
   <div id="map"></div>
 
 
+<<<<<<< HEAD
 
 <script>
+=======
+    <script>
+>>>>>>> f25ecdcf8c0975260a21a3604c1c2c8d17277d4a
 
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input);
         var markers = [];
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+             zoom: 15,
+             center: {lat: -34.397, lng: 150.644}
+        });
         function locate(){
             navigator.geolocation.getCurrentPosition(initialize,fail);
         }
 
         function initialize(position) {
           var geocoder = new google.maps.Geocoder();
-          var map = new google.maps.Map(document.getElementById('map'), {
-             zoom: 15,
-             center: {lat: -34.397, lng: 150.644}
-           });
-
 
            var address = document.getElementById('autocomplete').value;
            alert(address);
@@ -64,10 +69,18 @@
                 map: map,
                 position: results[0].geometry.location
               });
+              
+              var information = "place information";
+              var div = document.createElement("div");
+              div.createTextNode(document.createTextNode(information));
+              marker.addListener('click', function() {
+                document.getElementbyId('content').appendChild(div);
+              });
             } else {
               alert('Geocode was not successful for the following reason: ' + status);
             }
           });
+
         }
         function fail(){
             alert('navigator.geolocation failed, may not be supported');
