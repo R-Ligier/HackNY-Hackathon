@@ -70,11 +70,8 @@
                 position: results[0].geometry.location
               });
               
-              var information = "place information";
-              var div = document.createElement("div");
-              div.createTextNode(document.createTextNode(information));
               marker.addListener('click', function() {
-                document.getElementbyId('content').appendChild(div);
+                
               });
             } else {
               alert('Geocode was not successful for the following reason: ' + status);
