@@ -45,6 +45,21 @@
     margin-top: 120px;
     margin-bottom: 300px;
 }
+
+/*submit bottom*/
+.searchBox #submit{
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
 input{
 
         position: center;
@@ -64,4 +79,9 @@ input[type=text] {
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
+/*Map*/
+ #map {
+        height: 100%;
+        width: 100%;
+       }
 

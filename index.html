@@ -8,17 +8,13 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en"></script>
+
     <!-- Nav Bar -->
 <div class="topnav" id="myTopNav">
     <a href="#home">Home</a>
     <a href="#map">Map</a>
 </div>
-<style>
-       #map {
-        height: 800px;
-        width: 200%;
-       }
-</style>
+
 </head>
 
 <body >
@@ -34,7 +30,7 @@
         </div>
         <div class = "searchBox">
             <input type="text" placeholder="Enter a location ..." id="autocomplete">
-            <button id='submit' onclick="locate()">Submit</button>
+            <button id='submit' onclick="locate()">Search</button>
         </div>
     </div>
 
@@ -42,8 +38,7 @@
 
 
 
-
-    <script>
+<script>
 
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input);
@@ -78,8 +73,7 @@
             alert('navigator.geolocation failed, may not be supported');
         }
 
-
-    </script>
+</script>
 
 </body>
 
