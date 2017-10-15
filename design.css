@@ -1,35 +1,47 @@
  
-/* NAV BAR */
+ /*NAV BAR */
 
-/* Add a black background color to the top navigation */
+ /*Add a white background color to the top navigation */
+
 .topnav {
-    background-color: #333;
+    background-color: transparent;
     overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
+ /*Style the links inside the navigation bar */
 .topnav a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 25px;
     font-family: 'Hind', sans-serif;
 }
 
-/* Change the color of links on hover */
+ /*Change the color of links on hover */
 .topnav a:hover {
     background-color: #ddd;
     color: black;
 }
+#home{
 
+    background-image: url('leaves.jpg');
+    height: 50%;
+
+     /*Position and center the image to scale nicely on all screens */
+    background-position: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
 /*Find a health clinic*/
 .HeaderTitle{
-        margin-top: 90px;
+        padding-top: 150px;
         font-family: 'Quicksand', sans-serif;
         font-size: 50px;
+        text-align: center;
 }
 
 .HeaderTitle p{
@@ -42,8 +54,8 @@
 .searchBox{
     width: 100%;
     text-align:center;
-    margin-top: 120px;
-    margin-bottom: 300px;
+    padding-top: 90px;
+    padding-bottom: 300px;
 }
 
 /*submit bottom*/
@@ -57,6 +69,9 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+}
+#text{
+    margin-top: 30px;
 }
 
 
@@ -79,9 +94,25 @@ input[type=text] {
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
+
+/*--------MAP Content------------*/
+ #mapContent{
+display:table; 
+width:100%;
+padding-top: 30px;
+}
+.column {
+
+display:table-cell;
+width:80%;
+background:#ccc;
+padding:0 20px;
+}
+.two {
+background:yellow;
+}
 /*Map*/
  #map {
         height: 100%;
         width: 100%;
        }
-

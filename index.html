@@ -9,42 +9,62 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAat9gGlp6aCc-qZKFIIAATaX9M_lkM_b0&libraries=places&language=en"></script>
 
-    <!-- Nav Bar -->
-<div class="topnav" id="myTopNav">
-    <a href="#home">Home</a>
-    <a href="#tips">Tips</a>
-    <div id='content'></div>
-</div>
+    
 
 </head>
 
-<body >
+<body>
 
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#tips">Tips</a>
+</div>
 
     <!-- Home tab - search bar -->
     <div id = "home" class="active">
 
         <div class = "HeaderTitle">
-            <center> Find a Mental Health Clinic </center>
-            <center> <p> Providing users with easy access to mental health
-                    clinics around around them </p> </center>
+              Find a Mental Health Clinic
+            <p> Providing users with easy access to mental health
+                    clinics around around them </p> 
+            
         </div>
+
         <div class = "searchBox">
             <input type="text" placeholder="Enter a location ..." id="autocomplete">
             <button id='submit' onclick="locate()">Search</button>
         </div>
     </div>
 
+    <div id="mapContent">
+       <div class="column">
+          <p>Some Content</p>
+          <p>Some Content</p>
+          <p>Some Content</p>
+       </div>
+       <div class="column two">
+        <p>Some Content</p>
+
+       </div>
+    </div>
+  
+
+    <div id = "tips">
+      <p> bskiwdn </p>
+    </div>
+
   <div id="map"></div>
 
 
 
-
-
-
     <script>
-
-
+        /* affix the navbar after scroll below header */
+        $('#nav').affix({
+              offset: {
+                top: $('#services').offset().top
+              }
+        }); 
+        // --------------MAP--------------------------------
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input);
         var markers = [];
